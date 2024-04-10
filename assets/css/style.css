@@ -1,0 +1,39 @@
+/*-------------------------------------Imports--*/
+@import url("https://fonts.googleapis.com/css2?family=Tomorrow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/*-------------------------------------Background--*/
+
+
+#background-image{
+    background: url("../images/background_image.jpg") no-repeat center center;
+    height: 100vh;
+}
+
+#game-area {
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    box-sizing: border-box;
+    width: 85%;
+    height: 80%;
+    margin-left: auto;
+    margin-right: auto;
+;
+    padding: 1%;
+    border-radius: 5%;
+    border: 2px solid #fff
+}
+
+#game-title{
+    font-family: Tomorrow, sans-serif;
+    color:#000;
+    outline-color: #fff;
+    border: 10px;
+    text-align: center;
+    padding-top: 10px;
+}
+
+#contact-bar{
+    background-color: black;
+    height: 10%;
+
+}
