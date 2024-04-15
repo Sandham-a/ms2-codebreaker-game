@@ -7,7 +7,7 @@
 
 #background-image{
     background: url("../images/background_image.jpg") no-repeat center center;
-    height: 100vh;
+    height: 80vh;
 }
 
 #game-area {
@@ -19,6 +19,7 @@
     margin-top: 5%;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 30px;
     padding: 1%;
     border-radius: 5%;
     border: 2px solid #fff
@@ -33,20 +34,37 @@
 }
 
 #contact-bar{
-    background-color: black;
-    position:fixed; 
+    background-color: black; 
     height: 7.5%;
     width: 100%;
-    vertical-align: middle;
     font-size: 1.5em;
     color: #fefefe;
 }
 
+
+.contact-links li{
+    display: inline;
+    padding-left: 0;
+    padding-right:0;
+}
+
 #contact-bar p{
     text-align: center;
+    vertical-align: middle;
+    font-family: Teko, sans-serif;
+}
+
+#contact-bar ul{
+    list-style-type: none;
+    padding: 0;   
 }
 
 .contact i{
-    
+    align-items: center;
     color: #fefefe;
+}
+
+#central-icon{
+    padding-left: 35px;
+    padding-right: 35px; 
 }
