@@ -4,10 +4,18 @@
 
 /*-------------------------------------Background--*/
 
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
 
 #background-image{
     background: url("../images/background_image.jpg") no-repeat center center;
-    height: 80vh;
+    background-size: cover;
+    background-position: center;
 }
 
 #game-area {
@@ -15,8 +23,8 @@
     backdrop-filter: blur(10px);
     box-sizing: border-box;
     width: 85%;
-    height: 75%;
-    margin-top: 5%;
+    height: 85%;
+    margin-top: 2%;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 30px;
@@ -39,6 +47,8 @@
     width: 100%;
     font-size: 1.5em;
     color: #fefefe;
+    position: fixed;
+    bottom: 0;
 }
 
 
@@ -67,4 +77,20 @@
 #central-icon{
     padding-left: 35px;
     padding-right: 35px; 
+}
+
+/*-------------------------------------contact form--*/
+
+#contact-form{
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+#form-name{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#form-email{
+    margin-bottom: 30px;
 }
