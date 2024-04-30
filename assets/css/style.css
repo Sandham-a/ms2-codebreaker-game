@@ -64,6 +64,10 @@ body {
     font-family: Teko, sans-serif;
 }
 
+.footer-text{
+    padding-top: 10px;
+}
+
 #contact-bar ul{
     list-style-type: none;
     padding: 0;   
@@ -73,6 +77,11 @@ body {
     align-items: center;
     color: #fefefe;
 }
+
+.contact i:hover {
+    color: #47555e;
+    transition: all 0.35s ease-in-out;
+  }
 
 #central-icon{
     padding-left: 35px;

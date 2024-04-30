@@ -11,13 +11,20 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://kit.fontawesome.com/c1c806d69a.js" crossorigin="anonymous"></script>
     <title>Codebreaker</title>
-    <link>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+   (function(){
+      emailjs.init("Lg-MpBnU738I6E3xR");
+   })();
+    </script>
 </head>
 <body id="background-image">
     <div id="game-area">
         <h1 id="game-title">Contact Us</h1>
         <div>
-            <form id="contact-form">
+            <form id="contact-form" onsubmit="return sendMail(this);" method="POST">
             <div>
               <input type="text" class="form-control" id="form-name" name="name" placeholder="Name" required/>
               <input type="email" class="form-control" id="form-email" name="email" placeholder="Email Address" required/>
@@ -33,7 +40,7 @@
     <footer>
         <div id="contact-bar">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4 footer-text">
                     <div class="contact-links d-flex justify-content-center">
                         <li class="contact">
                             <a target="_blank" href="https://www.linkedin.com/in/adam-sandham-93109b166/">
@@ -48,21 +55,22 @@
                             </a>
                         </li>
                         <li class="contact">
-                            <a target="_blank" href="mailto:z_a_sandham@hotmail.co.uk">
-                                <i class="fa fa-envelope" aria-hidden="true"></i>
-                                <span class="sr-only">Email</span>
+                            <a target="_blank" href="https://twitter.com">
+                                <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+                                <span class="sr-only">Twitter/x</span>
                             </a>
                         </li>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 footer-text">
                     <p>Created by A.Sandham</p>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 footer-text">
                     <a href="contact.html"><p>Contact Us</p></a>
                 </div>
             </div>
         </div>
     </footer>
+    <script src="/assets/js/contact.js"></script>
 </body>
 </html>
