@@ -16,6 +16,19 @@
 <body id="background-image">
     <div id="game-area">
         <h1 id="game-title">Codebreaker</h1>
+        <!-- Main screen with game title and user login -->
+        <div class="mt-3" id="login-screen">
+            <div class="user-input">
+                <label for="user">Please enter your agent name</label>
+                <br>
+                <input type="text" id="user" name="user" maxlength=20>
+            </div>
+            <button class="button" id="user-log">Start Game</button>
+            
+            <p class="user-log-error" id="error-message">
+                Please try again. <br>Agent name must be between 1 and 12 characters.
+            </p>
+        </div>
     </div>
     <footer>
         <div id="contact-bar">
