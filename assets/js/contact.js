@@ -3,11 +3,9 @@
  * then sends the object to the email JS process the API request.
  */
 function sendMail(contactForm) {
-  let serviceID = "service_0fp6dju";
-  let templateID = "template_k9hm21e";
-  emailjs.send(serviceID, templateID, {
+  emailjs.send("service_0fp6dju", "template_k9hm21e", {
       "from_name": contactForm.name.value,
-      "from_email": contactForm.form-email.value,
+      "from_email": contactForm.email.value,
       "message": contactForm.message.value
   })
   .then(
@@ -19,4 +17,5 @@ function sendMail(contactForm) {
       }
   );
   return false;  // To block from loading a new page
+  location.reload();
 }
