@@ -28,7 +28,6 @@ function runMainScreen() {
     correctScreen.style.display = "none";
     wrongScreen.style.display = "none";
     document.getElementById("user-icon").style.display = "none";
-    document.getElementById("cloud-icon").style.display = "none";
     document.getElementById("username").innerText = "";
     document.getElementById("user").focus(); //focus on input element with cursor ready for username input
 }

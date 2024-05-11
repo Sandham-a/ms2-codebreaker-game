@@ -31,6 +31,8 @@ body {
     padding: 1%;
     border-radius: 5%;
     border: 2px solid #fff;
+    font-family: Teko, sans-serif;
+    font-weight: 100;
     color: #fefefe;
 }
 
