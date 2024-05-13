@@ -32,6 +32,11 @@ function runMainScreen() {
     document.getElementById("user").focus(); //focus on input element with cursor ready for username input
 }
 
+/**
+ * Verification of the user name input on the log-in screen
+ */
+document.getElementById("user-log").addEventListener("click", checkUsername);
+
 function checkUsername() {
     let username = document.getElementById("user").value.trim();
 
@@ -56,3 +61,14 @@ document.getElementById("user").addEventListener("keydown", function (event) {
         checkUsername();
     }
 });
+
+function selectGameLevel() {
+    score = 0;
+    document.getElementById('level-buttons').addEventListener('click', function (event) {
+        if (!event.target.className.includes("button-level")) return; // prevent click over all div with three buttons
+        let button = event.target;
+        let gameLevel = button.getAttribute('data-type');
+        setGame(gameLevel);
+    });
+}
+selectGameLevel();
