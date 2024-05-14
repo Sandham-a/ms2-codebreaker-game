@@ -14,6 +14,7 @@ let displayGuessNumber = document.getElementById("guesses");
 let errorMessage = document.getElementById("error-message");
 let chooseLevelScreen = document.getElementById("choose-level-screen");
 let gameScreen = document.getElementById("game-screen");
+let resetButton = document.getElementById("reset-button");
 
 /**
 * Show the main screen with user log-in and instruction icon
@@ -74,6 +75,7 @@ selectGameLevel();
 function setGame(gameLevel) {
     chooseLevelScreen.style.display = "none";
     gameScreen.style.display = "block";
+    resetButton.style.display = "none";
 }
 
 document.getElementById("level-buttons").addEventListener("click", runGame);
@@ -89,13 +91,33 @@ function runGame(){
     const checkButton = document.getElementById("check-button");
     const resultDiv = document.getElementById("result");
 
-    let selectedColors = ["red", "green", "blue", "yellow"]; // Predefined solution colors
-
+    /**
+     * creating a the answer from a random array
+     * @param {*} arr 
+     * @param {*} numElements 
+     * @returns 
+     */
+    
+    function getRandomElementsFromArray(arr, numElements) {
+        const randomElements = [];
+        const arrayCopy = arr.slice(); // Create a copy of the original array to avoid modifying it
+    
+        for (let i = 0; i < numElements; i++) {
+            const randomIndex = Math.floor(Math.random() * arrayCopy.length);
+            const randomElement = arrayCopy.splice(randomIndex, 1)[0];
+            randomElements.push(randomElement);
+        }
+    
+        return randomElements;
+    }
+    const selectedColors = getRandomElementsFromArray(colors, 4);
+    console.log(selectedColors); //answer shown in console for ease of marking. THIS IS INTENTIONAL
+    
     // Initialize buttons with initial colors
-    button1.style.backgroundColor = selectedColors[0];
-    button2.style.backgroundColor = selectedColors[1];
-    button3.style.backgroundColor = selectedColors[2];
-    button4.style.backgroundColor = selectedColors[3];
+    button1.style.backgroundColor = colors[0];
+    button2.style.backgroundColor = colors[1];
+    button3.style.backgroundColor = colors[2];
+    button4.style.backgroundColor = colors[3];
 
     // Add click event listeners to buttons
     button1.addEventListener("click", () => changeColor(button1));
@@ -134,9 +156,19 @@ function runGame(){
         }
 
         if (correctPosition === 4) {
-            resultDiv.textContent = "Congratulations! You've guessed the correct colors!";
+            resultDiv.textContent = "Congratulations! You've cracked the code!";
+            resetButton.style.display = "block";
+            
         } else {
             resultDiv.textContent = `Correct position: ${correctPosition}, Correct color: ${correctColor}`;
         }
+
+        function resetGame(){
+            gameScreen.style.display = "none";
+            console.clear();
+            checkUsername();
+        }
+
+        resetButton.addEventListener("click", resetGame);
     }
 }
