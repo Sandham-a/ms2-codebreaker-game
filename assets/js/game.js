@@ -68,15 +68,13 @@ function selectGameLevel() {
 }
 selectGameLevel();
 
-
-
-
 function runGame(gameLevel){
-
+    //change the display to the game screen
     chooseLevelScreen.style.display = "none";
     gameScreen.style.display = "block";
     resetButton.style.display = "none";
 
+    //set the size of the array depending on the level of the game
     if(gameLevel === "easy"){
         colors = ["black","white"];
     }else if (gameLevel === "medium"){
@@ -111,7 +109,7 @@ function runGame(gameLevel){
         return randomElements;
     }
     const selectedColors = getRandomElementsFromArray(colors, 4);
-    console.log(selectedColors); //answer shown in console for ease of marking. THIS IS INTENTIONAL
+    console.log(selectedColors); //answer shown in console for ease of marking and testing. THIS IS INTENTIONAL
     
     //Initialize buttons with initial colors
     if(gameLevel === "easy"){
@@ -125,6 +123,7 @@ function runGame(gameLevel){
         button3.style.backgroundColor = colors[2];
         button4.style.backgroundColor = colors[3];
     }
+
     //Add click event listener to check button
     checkButton.addEventListener("click", checkColors);
 
@@ -162,7 +161,7 @@ function runGame(gameLevel){
             gameScreen.style.display = "none";
             resetButton.style.display = "none";
             console.clear(); //clears console for the sake of housekeeping
-            checkUsername();
+            checkUsername(); //runs checkUsername to get back to the select level screen
         }
         resetButton.addEventListener("click", resetGame);
     }
