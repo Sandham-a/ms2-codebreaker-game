@@ -36,6 +36,8 @@ body {
     color: #fefefe;
 }
 
+
+
 #game-title{
     font-family: Tomorrow, sans-serif;
     color:#000;
@@ -107,6 +109,28 @@ body {
     margin-bottom: 30px;
 }
 
+/*-------------------------------------login screen--*/
+
+#login-screen{
+    text-align: center;
+    font-size: 16px;
+}
+
+#login-instruction{
+    font-size: 24px;
+}
+
+#user{
+    margin-bottom: 20px;
+}
+
+
+/*-------------------------------------level select--*/
+
+#choose-level-screen{
+    text-align: center;
+    margin-top: 20px;
+}
 
 /*-------------------------------------game area--*/
 
