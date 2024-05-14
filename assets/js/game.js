@@ -165,10 +165,9 @@ function runGame(){
 
         function resetGame(){
             gameScreen.style.display = "none";
-            console.clear();
+            console.clear(); //clears console for the sake of housekeeping
             checkUsername();
         }
-
         resetButton.addEventListener("click", resetGame);
     }
 }
