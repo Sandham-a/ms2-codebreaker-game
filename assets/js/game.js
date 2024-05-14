@@ -81,9 +81,11 @@ function setGame(gameLevel) {
 
 document.getElementById("level-buttons").addEventListener("click", runGame);
 
+let colors = ["red", "green", "blue", "yellow", "white", "black"];
+
 function runGame(){
 
-    let colors = ["red", "green", "blue", "yellow", "white", "black"];
+    
 
     let button1 = document.getElementById("button1");
     let button2 = document.getElementById("button2");
@@ -121,22 +123,9 @@ function runGame(){
     button4.style.backgroundColor = colors[3];
 
     //Add click event listeners to buttons
-    button1.addEventListener("click", () => changeColor(button1));
-    button2.addEventListener("click", () => changeColor(button2));
-    button3.addEventListener("click", () => changeColor(button3));
-    button4.addEventListener("click", () => changeColor(button4));
-
+   
     // Function to change button color
-    function changeColor(button) {
-        
-        let currentColorIndex = colors.indexOf(button.style.backgroundColor);
-        let nextColorIndex = (currentColorIndex + 1) % colors.length;
-        button.style.backgroundColor = colors[nextColorIndex];
-        console.log(currentColorIndex);
-        console.log(nextColorIndex);
-        
-    }
-
+    
     //Add click event listener to check button
     checkButton.addEventListener("click", checkColors);
 
@@ -177,3 +166,18 @@ function runGame(){
         resetButton.addEventListener("click", resetGame);
     }
 }
+
+function changeColor(button) {
+        
+    let currentColorIndex = colors.indexOf(button.style.backgroundColor);
+    let nextColorIndex = (currentColorIndex + 1) % colors.length;
+    button.style.backgroundColor = colors[nextColorIndex];
+    console.log(currentColorIndex);
+    console.log(nextColorIndex);
+    
+}
+
+button1.addEventListener("click", () => changeColor(button1));
+button2.addEventListener("click", () => changeColor(button2));
+button3.addEventListener("click", () => changeColor(button3));
+button4.addEventListener("click", () => changeColor(button4));
