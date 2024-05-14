@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 /**
- * Setting up variables of various ID's to be able to show and hide
+ * Setting up global variables of various ID's to be able to show and hide
  */
 let mainLoginScreen = document.getElementById("login-screen");
 let getInstructions = document.getElementById("instructions-icon");
@@ -15,6 +15,7 @@ let errorMessage = document.getElementById("error-message");
 let chooseLevelScreen = document.getElementById("choose-level-screen");
 let gameScreen = document.getElementById("game-screen");
 let resetButton = document.getElementById("reset-button");
+let colors = [];
 
 /**
 * Show the main screen with user log-in and instruction icon
@@ -62,37 +63,27 @@ function selectGameLevel() {
         if (!event.target.className.includes("button-level")) return; // prevent click over all div with three buttons
         let button = event.target;
         let gameLevel = button.getAttribute('data-type');
-        setGame(gameLevel);
+        runGame(gameLevel);
     });
 }
 selectGameLevel();
 
-/**
- * Set the game screen based on level selected.
- * Display selected game level, number of guesses.
- * Set up solution for the game.
- * @param {string} gameLevel 
- */
-function setGame(gameLevel) {
+
+
+
+function runGame(gameLevel){
+
     chooseLevelScreen.style.display = "none";
     gameScreen.style.display = "block";
     resetButton.style.display = "none";
-    runGame(setGame);
-    
-}
-
-document.getElementById("level-buttons").addEventListener("click", runGame);
-
-function runGame(setGame){
 
     if(gameLevel === "easy"){
-        let colors = ["black","white"];
+        colors = ["black","white"];
     }else if (gameLevel === "medium"){
-        let colors = ["red", "green", "blue", "yellow"];
-    }else {
-        let colors = ["red", "green", "blue", "yellow", "white", "black"];
+        colors = ["red", "green", "blue", "yellow"];
+    }else if(gameLevel === "hard") {
+        colors = ["red", "green", "blue", "yellow", "white", "black"];
     }
-    return colors;
 
     let button1 = document.getElementById("button1");
     let button2 = document.getElementById("button2");
@@ -110,11 +101,10 @@ function runGame(setGame){
     
     function getRandomElementsFromArray(arr, numElements) {
         let randomElements = [];
-        let arrayCopy = arr.slice(); //Create a copy of the original array to avoid modifying it
-    
+        
         for (let i = 0; i < numElements; i++) {
-            const randomIndex = Math.floor(Math.random() * arrayCopy.length);
-            const randomElement = arrayCopy.splice(randomIndex, 1)[0];
+            const randomIndex = Math.floor(Math.random() * arr.length);
+            const randomElement = arr[randomIndex];
             randomElements.push(randomElement);
         }
     
@@ -124,28 +114,32 @@ function runGame(setGame){
     console.log(selectedColors); //answer shown in console for ease of marking. THIS IS INTENTIONAL
     
     //Initialize buttons with initial colors
-    button1.style.backgroundColor = colors[0];
-    button2.style.backgroundColor = colors[1];
-    button3.style.backgroundColor = colors[2];
-    button4.style.backgroundColor = colors[3];
-
-
-    
+    if(gameLevel === "easy"){
+        button1.style.backgroundColor = colors[0];
+        button2.style.backgroundColor = colors[1];
+        button3.style.backgroundColor = colors[0];
+        button4.style.backgroundColor = colors[1];
+    }else{
+        button1.style.backgroundColor = colors[0];
+        button2.style.backgroundColor = colors[1];
+        button3.style.backgroundColor = colors[2];
+        button4.style.backgroundColor = colors[3];
+    }
     //Add click event listener to check button
     checkButton.addEventListener("click", checkColors);
 
     //Function to check if selected colors match solution
     function checkColors() {
+        let correctPosition = 0;
+        let correctColor = 0;
+        
         const selected = [
             button1.style.backgroundColor,
             button2.style.backgroundColor,
             button3.style.backgroundColor,
             button4.style.backgroundColor
         ];
-
-        let correctPosition = 0;
-        let correctColor = 0;
-
+    
         for (let i = 0; i < selected.length; i++) {
             if (selected[i] === selectedColors[i]) {
                 correctPosition++;
@@ -153,27 +147,30 @@ function runGame(setGame){
                 correctColor++;
             }
         }
-
-        if (correctPosition === 4) {
+    
+        if (correctPosition == 4) {
             resultDiv.textContent = "Congratulations! You've cracked the code!";
             resetButton.style.display = "block";
             
         } else {
             resultDiv.textContent = `Correct position: ${correctPosition}, Correct color: ${correctColor}`;
         }
-
+    
         //function to reset the game
         function resetGame(){
+            resultDiv.textContent = "";
             gameScreen.style.display = "none";
+            resetButton.style.display = "none";
             console.clear(); //clears console for the sake of housekeeping
             checkUsername();
         }
         resetButton.addEventListener("click", resetGame);
     }
-}  
+    
+}
+  
 // Function to change button color
-function changeColor(button) {
-        
+function changeColor(button) {    
     let currentColorIndex = colors.indexOf(button.style.backgroundColor);
     let nextColorIndex = (currentColorIndex + 1) % colors.length;
     button.style.backgroundColor = colors[nextColorIndex];
