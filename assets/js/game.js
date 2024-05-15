@@ -10,17 +10,18 @@ document.addEventListener('DOMContentLoaded', function () {
  */
 let mainLoginScreen = document.getElementById("login-screen");
 let getInstructions = document.getElementById("instructions-icon");
-let displayGuessNumber = document.getElementById("guesses");
 let errorMessage = document.getElementById("error-message");
 let chooseLevelScreen = document.getElementById("choose-level-screen");
 let gameScreen = document.getElementById("game-screen");
 let resetButton = document.getElementById("reset-button");
+let contactMobile = document.getElementById("contact-mobile");
 let colors = [];
 
 /**
 * Show the main screen with user log-in and instruction icon
 */
 function runMainScreen() {
+    contactMobile.style.display = "none"
     errorMessage.style.display = "none";
     mainLoginScreen.style.display = "block";
     chooseLevelScreen.style.display = "none";
@@ -76,19 +77,22 @@ function runGame(gameLevel){
 
     //set the size of the array depending on the level of the game
     if(gameLevel === "easy"){
-        colors = ["black","white"];
+        colors = ["grey","white"];
     }else if (gameLevel === "medium"){
         colors = ["red", "green", "blue", "yellow"];
     }else if(gameLevel === "hard") {
-        colors = ["red", "green", "blue", "yellow", "white", "black"];
+        colors = ["red", "green", "blue", "yellow", "white", "grey"];
     }
 
     let button1 = document.getElementById("button1");
     let button2 = document.getElementById("button2");
     let button3 = document.getElementById("button3");
     let button4 = document.getElementById("button4");
+    let guessCounter = 0;
     const checkButton = document.getElementById("check-button");
     const resultDiv = document.getElementById("result");
+    const guessDiv = document.getElementById("guesses");
+    
 
     /**
      * creating a the answer from a random array
@@ -127,6 +131,7 @@ function runGame(gameLevel){
     //Add click event listener to check button
     checkButton.addEventListener("click", checkColors);
 
+    
     //Function to check if selected colors match solution
     function checkColors() {
         let correctPosition = 0;
@@ -146,23 +151,39 @@ function runGame(gameLevel){
                 correctColor++;
             }
         }
+        
     
-        if (correctPosition == 4) {
-            resultDiv.textContent = "Congratulations! You've cracked the code!";
+        if (correctPosition == 4 && guessCounter == 1) {
+            resultDiv.textContent = `Well Done! You've cracked the code in ${guessCounter} guess!`;
+            guessDiv.style.display = "none"
             resetButton.style.display = "block";
-            
+        } else if(correctPosition == 4){
+            guessCounter++; 
+            resultDiv.textContent = `Well Done! You've cracked the code in ${guessCounter} guesses!`;
+            guessDiv.style.display = "none"
+            resetButton.style.display = "block";   
+        } else if(gameLevel === "easy") {
+            guessCounter++; 
+            guessDiv.textContent = `Number of guesses: ${guessCounter}`;
+            resultDiv.textContent = `Correct position: ${correctPosition}`;
         } else {
-            resultDiv.textContent = `Correct position: ${correctPosition}, Correct color: ${correctColor}`;
+            guessCounter++;
+            guessDiv.textContent = `Number of guesses: ${guessCounter}`;
+            resultDiv.textContent = `Correct position: ${correctPosition}, Correct color: ${correctColor}`;                      
         }
-    
+       
         //function to reset the game
         function resetGame(){
+            guessDiv.style.display = "block";
             resultDiv.textContent = "";
+            guessDiv.textContent = "";
+            guessCounter = 0;
             gameScreen.style.display = "none";
             resetButton.style.display = "none";
             console.clear(); //clears console for the sake of housekeeping
             checkUsername(); //runs checkUsername to get back to the select level screen
         }
+
         resetButton.addEventListener("click", resetGame);
     }
     
