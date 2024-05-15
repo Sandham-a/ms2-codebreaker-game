@@ -17,11 +17,26 @@ let resetButton = document.getElementById("reset-button");
 let contactMobile = document.getElementById("contact-mobile");
 let colors = [];
 
+
+// Function to update the text based on screen width
+function mobileIcons() {
+    const screenWidth = window.innerWidth;
+
+    if (screenWidth > 425) {
+        contactMobile.style.display = "none"
+    } else{
+        contactMobile.style.display = "block"
+    }
+}
+
+// Call the function initially and add event listener for window resize
+mobileIcons();
+window.addEventListener("resize", mobileIcons);
+
 /**
 * Show the main screen with user log-in and instruction icon
 */
 function runMainScreen() {
-    contactMobile.style.display = "none"
     errorMessage.style.display = "none";
     mainLoginScreen.style.display = "block";
     chooseLevelScreen.style.display = "none";
