@@ -181,10 +181,20 @@ function runGame(gameLevel){
             guessCounter++; 
             guessDiv.textContent = `Number of guesses: ${guessCounter}`;
             resultDiv.textContent = `Correct position: ${correctPosition}`;
+            previousGuesses();
         } else {
             guessCounter++;
             guessDiv.textContent = `Number of guesses: ${guessCounter}`;
-            resultDiv.textContent = `Correct position: ${correctPosition}, Correct color: ${correctColor}`;                      
+            resultDiv.textContent = `Correct position: ${correctPosition}, Correct color: ${correctColor}`;
+            previousGuesses();                      
+        }
+
+        //function to take the failed selected elements and add them to the bottom of the game screen
+        function previousGuesses(){
+            let circle = document.createElement('div');
+            circle.classList.add('circle');
+            circle.style.backgroundColor = button1.style.backgroundColor;
+            gameScreen.appendChild(circle);
         }
        
         //function to reset the game
