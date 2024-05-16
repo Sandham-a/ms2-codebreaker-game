@@ -29,6 +29,21 @@
                 Please try again. <br>Agent name must be between 1 and 20 characters.
             </p>
         </div>
+        <!-- Modal with game instructions -->
+        <div id="instruction Modal" class="modal border border-2 p-1 p-sm-1">
+            <div class="modal-content">
+                <h2 id="modal-header">How to play</h2>
+                <p>Hello Agent you need to break the code.<br>
+                    Click on the buttons to change the code.<br>
+                    You can continue choosing letters until the sun gets covered.<br>
+                    Watch out! Depending on the game difficulty level you select, the rain may come faster than expected!<br>
+                    <br>
+                    <strong>Good Luck!</strong>
+                </p>
+                <button class="button" onclick="closeInstructions()">Close</button>
+            </div>
+        </div>
+
 
         <div id="choose-level-screen">
             <h3>Welcome agent <span id="username"></span>, Please choose your difficulty level</h3>
