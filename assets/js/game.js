@@ -189,12 +189,53 @@ function runGame(gameLevel){
             previousGuesses();                      
         }
 
-        //function to take the failed selected elements and add them to the bottom of the game screen
-        function previousGuesses(){
-            let circle = document.createElement('div');
-            circle.classList.add('circle');
-            circle.style.backgroundColor = button1.style.backgroundColor;
-            gameScreen.appendChild(circle);
+        function previousGuesses() {
+            let lastGuessContainer = document.getElementById("lastGuessContainer");
+            
+            // If the container doesn't exist, create it
+            if (!lastGuessContainer) {
+                lastGuessContainer = document.createElement('div');
+                lastGuessContainer.id = "lastGuessContainer";
+                gameScreen.appendChild(lastGuessContainer);
+            }
+        
+            let lastGuess = document.createElement('div');
+            lastGuess.classList.add('buttons');
+            let html = `
+                <h3> Last Guess: </h3>
+                <button class="color-button" id="button-a"></button>
+                <button class="color-button" id="button-b"></button>
+                <button class="color-button" id="button-c"></button>
+                <button class="color-button" id="button-d"></button>
+            `;
+            
+            lastGuess.innerHTML = html;
+        
+            // Clear the previous content before appending the new content
+            lastGuessContainer.innerHTML = "";
+        
+            // Append the new content
+            lastGuessContainer.appendChild(lastGuess);
+            lastGuessContainer.style.display = "Block";
+        
+            let buttonA = document.getElementById("button-a");
+            let buttonB = document.getElementById("button-b");
+            let buttonC = document.getElementById("button-c");
+            let buttonD = document.getElementById("button-d");
+        
+            // Store the colors of the buttons in an object
+            let lastGuessColors = {
+                buttonAColor: button1.style.backgroundColor,
+                buttonBColor: button2.style.backgroundColor,
+                buttonCColor: button3.style.backgroundColor,
+                buttonDColor: button4.style.backgroundColor
+            };
+        
+            // Set the background color of each button
+            buttonA.style.backgroundColor = lastGuessColors.buttonAColor;
+            buttonB.style.backgroundColor = lastGuessColors.buttonBColor;
+            buttonC.style.backgroundColor = lastGuessColors.buttonCColor;
+            buttonD.style.backgroundColor = lastGuessColors.buttonDColor;
         }
        
         //function to reset the game
@@ -205,6 +246,7 @@ function runGame(gameLevel){
             guessCounter = 0;
             gameScreen.style.display = "none";
             resetButton.style.display = "none";
+            lastGuessContainer.style.display = "none";
             console.clear(); //clears console for the sake of housekeeping
             checkUsername(); //runs checkUsername to get back to the select level screen
         }
