@@ -36,8 +36,6 @@ body {
     color: #fefefe;
 }
 
-
-
 #game-title{
     font-family: Tomorrow, sans-serif;
     color:#000;
@@ -189,4 +187,41 @@ body {
         margin-right: 20px;
     }
 
+}
+
+@media (min-width: 320px){
+    
+    #central-icon{
+        padding-left: 0;
+        padding-right: 0; 
+    }
+    
+    .contact i{
+        padding-left: 20px;
+        padding-right: 20px; 
+    }  
+
+    .color-button{
+        width: 40px;
+        height: 40px;
+    }
+    
+    #contact-form{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+
+@media (min-width: 768px){
+    #contact-form{
+        margin-left: 75px;
+        margin-right: 75px;
+    }   
+}
+
+@media (min-width: 1024px){
+    #contact-form{
+        margin-left: 150px;
+        margin-right: 150px;
+    }   
 }
