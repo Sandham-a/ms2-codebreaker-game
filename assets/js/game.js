@@ -15,6 +15,7 @@ let chooseLevelScreen = document.getElementById("choose-level-screen");
 let gameScreen = document.getElementById("game-screen");
 let resetButton = document.getElementById("reset-button");
 let contactMobile = document.getElementById("contact-mobile");
+let remainingGuess = document.getElementById("remaining-guesses");
 let colors = [];
 
 
