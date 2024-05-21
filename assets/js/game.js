@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
  * Setting up global variables of various ID's to be able to show and hide
  */
 let mainLoginScreen = document.getElementById("login-screen");
+let instructionButton = document.getElementById('btn-instruction');
 let getInstructions = document.getElementById("instructions-icon");
 let errorMessage = document.getElementById("error-message");
 let chooseLevelScreen = document.getElementById("choose-level-screen");
@@ -104,8 +105,8 @@ function runGame(gameLevel){
     let button3 = document.getElementById("button3");
     let button4 = document.getElementById("button4");
     let guessCounter = 0;
-    let guessesLeft = 3;
-    const checkButton = document.getElementById("check-button");
+    let guessesLeft = 2;
+    let checkButton = document.getElementById("check-button");
     const resultDiv = document.getElementById("result");
     const guessDiv = document.getElementById("guesses");
     const remainDiv = document.getElementById("remaining-guesses");
@@ -160,8 +161,6 @@ function runGame(gameLevel){
         let correctPosition = 0;
         let correctColor = 0;
         
-        
-    
         for (let i = 0; i < selected.length; i++) {
             if (selected[i] === selectedColors[i]) {
                 correctPosition++;
@@ -299,12 +298,16 @@ function runGame(gameLevel){
         //function to reset the game
         function resetGame(){
             guessDiv.style.display = "block";
+            checkButton.style.display = "block";
             resultDiv.textContent = "";
             guessDiv.textContent = "";
+            remainDiv.textContent ="";
             guessCounter = 0;
+            guessesLeft = 10;
             gameScreen.style.display = "none";
             resetButton.style.display = "none";
             lastGuessContainer.style.display = "none";
+            failedAnswerContainer.style.display = "none";
             console.clear(); //clears console for the sake of housekeeping
             checkUsername(); //runs checkUsername to get back to the select level screen
         }

@@ -107,6 +107,15 @@ body {
     margin-bottom: 30px;
 }
 
+#btn-send-form{
+    margin-right: 10px;
+}
+
+#btn-go-back{
+    margin-top: 16px;
+    margin-left: 10px;
+    height: 30px;
+}
 /*-------------------------------------login screen--*/
 
 #login-screen{
@@ -151,6 +160,8 @@ body {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 20px;
 }
 
@@ -166,6 +177,7 @@ body {
     cursor: pointer;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 10px;
 }
 
 /* ----------------------------------------Media Query */
