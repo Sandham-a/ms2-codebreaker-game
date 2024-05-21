@@ -15,7 +15,6 @@ let chooseLevelScreen = document.getElementById("choose-level-screen");
 let gameScreen = document.getElementById("game-screen");
 let resetButton = document.getElementById("reset-button");
 let contactMobile = document.getElementById("contact-mobile");
-let remainingGuess = document.getElementById("remaining-guesses");
 let colors = [];
 
 
@@ -105,9 +104,11 @@ function runGame(gameLevel){
     let button3 = document.getElementById("button3");
     let button4 = document.getElementById("button4");
     let guessCounter = 0;
+    let guessesLeft = 3;
     const checkButton = document.getElementById("check-button");
     const resultDiv = document.getElementById("result");
     const guessDiv = document.getElementById("guesses");
+    const remainDiv = document.getElementById("remaining-guesses");
     
 
     /**
@@ -147,18 +148,19 @@ function runGame(gameLevel){
     //Add click event listener to check button
     checkButton.addEventListener("click", checkColors);
 
+    const selected = [
+        button1.style.backgroundColor,
+        button2.style.backgroundColor,
+        button3.style.backgroundColor,
+        button4.style.backgroundColor
+    ];
     
     //Function to check if selected colors match solution
     function checkColors() {
         let correctPosition = 0;
         let correctColor = 0;
         
-        const selected = [
-            button1.style.backgroundColor,
-            button2.style.backgroundColor,
-            button3.style.backgroundColor,
-            button4.style.backgroundColor
-        ];
+        
     
         for (let i = 0; i < selected.length; i++) {
             if (selected[i] === selectedColors[i]) {
@@ -168,7 +170,6 @@ function runGame(gameLevel){
             }
         }
         
-    
         if (correctPosition == 4 && guessCounter == 1) {
             resultDiv.textContent = `Well Done! You've cracked the code in ${guessCounter} guess!`;
             guessDiv.style.display = "none"
@@ -180,14 +181,22 @@ function runGame(gameLevel){
             resetButton.style.display = "block";   
         } else if(gameLevel === "easy") {
             guessCounter++; 
+            guessesLeft --;
             guessDiv.textContent = `Number of guesses: ${guessCounter}`;
             resultDiv.textContent = `Correct position: ${correctPosition}`;
+            remainDiv.textContent = `Number of guesses remaining: ${guessesLeft}`;
             previousGuesses();
         } else {
             guessCounter++;
+            guessesLeft --;
             guessDiv.textContent = `Number of guesses: ${guessCounter}`;
             resultDiv.textContent = `Correct position: ${correctPosition}, Correct color: ${correctColor}`;
+            remainDiv.textContent = `Number of guesses remaining: ${guessesLeft}`;
             previousGuesses();                      
+        }
+
+        if(guessesLeft == 0){
+            gameFailed()
         }
 
         function previousGuesses() {
@@ -237,6 +246,54 @@ function runGame(gameLevel){
             buttonB.style.backgroundColor = lastGuessColors.buttonBColor;
             buttonC.style.backgroundColor = lastGuessColors.buttonCColor;
             buttonD.style.backgroundColor = lastGuessColors.buttonDColor;
+        }
+
+        function gameFailed(){
+            let failedAnswerContainer = document.getElementById("failedAnswerContainer");
+
+            if (!failedAnswerContainer) {
+                failedAnswerContainer = document.createElement('div');
+                failedAnswerContainer.id = "failedAnswerContainer";
+                gameScreen.appendChild(failedAnswerContainer);
+            }
+
+            lastGuessContainer.style.display = "none";
+            checkButton.style.display = "none";
+            resultDiv.textContent = `I'm afraid you haven't cracked the code in time. The world is doomed!!!`;
+            guessDiv.style.display = "none"
+            resetButton.style.display = "block";
+
+            let failedAnswer = document.createElement('div');
+            failedAnswer.classList.add('buttons');
+            let html = `
+                <h3> The answer was: </h3>
+                <button class="color-button" id="button-w"></button>
+                <button class="color-button" id="button-x"></button>
+                <button class="color-button" id="button-y"></button>
+                <button class="color-button" id="button-z"></button>
+            `;
+
+            failedAnswer.innerHTML = html;
+        
+            // Clear the previous content before appending the new content
+            failedAnswerContainer.innerHTML = "";
+        
+            // Append the new content
+            failedAnswerContainer.appendChild(failedAnswer);
+            failedAnswerContainer.style.display = "Block";
+        
+            let buttonW = document.getElementById("button-w");
+            let buttonX = document.getElementById("button-x");
+            let buttonY = document.getElementById("button-y");
+            let buttonZ = document.getElementById("button-z");
+
+            // Set the background color of each button
+            buttonW.style.backgroundColor = selected[0];
+            buttonX.style.backgroundColor = selected[1];
+            buttonY.style.backgroundColor = selected[2];
+            buttonZ.style.backgroundColor = selected[3];
+
+            
         }
        
         //function to reset the game
