@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
  * Setting up global variables of various ID's to be able to show and hide
  */
 let mainLoginScreen = document.getElementById("login-screen");
-let instructionButton = document.getElementById('btn-instruction');
+let instructionsButton = document.getElementById('btn-instructions');
 let getInstructions = document.getElementById("instructions-icon");
 let errorMessage = document.getElementById("error-message");
 let chooseLevelScreen = document.getElementById("choose-level-screen");
@@ -19,7 +19,7 @@ let contactMobile = document.getElementById("contact-mobile");
 let colors = [];
 
 
-// Function to update the text based on screen width
+// Function to show an icon in the footer to access the contact page
 function mobileIcons() {
     const screenWidth = window.innerWidth;
 
