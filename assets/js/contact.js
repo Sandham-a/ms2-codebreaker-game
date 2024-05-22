@@ -35,10 +35,10 @@ function sendMail(contactForm) {
   return false;  // To block from loading a new page
 }
 
-let homeButton = document.getElementById('btn-go-back');
+let backButton = document.getElementById('btn-go-back');
 
         // Add click event listener to the home button
-        homeButton.addEventListener('click', function() {
+        backButtonButton.addEventListener('click', function() {
             // Navigate to index.html when the button is clicked
             window.location.href = 'index.html';
         });

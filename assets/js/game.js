@@ -105,7 +105,7 @@ function runGame(gameLevel){
     let button3 = document.getElementById("button3");
     let button4 = document.getElementById("button4");
     let guessCounter = 0;
-    let guessesLeft = 2;
+    let guessesLeft = 10;
     let checkButton = document.getElementById("check-button");
     const resultDiv = document.getElementById("result");
     const guessDiv = document.getElementById("guesses");

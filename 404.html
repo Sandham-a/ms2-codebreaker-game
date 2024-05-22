@@ -4,43 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Codebreaker is a mastermind guessing game to teach the programmer how to use Javascript in a website.">
-    <meta name="keywords" content="Guessing Game, mastermind, Mastermind, game, pattern, ">
+    <meta name="keywords" content="Guessing Game, mastermind, Mastermind, game, pattern-matching">
     <meta name="author" content="Adam Sandham">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.1.1/css/hover-min.css" type="text/css">
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://kit.fontawesome.com/c1c806d69a.js" crossorigin="anonymous"></script>
     <title>Codebreaker</title>
-    <script>
-        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
-    </script>
-    <script>
-        (function() {
-            emailjs.init("Lg-MpBnU738I6E3xR");
-        })();
-    </script>
 </head>
 <body id="background-image">
-    <div id="game-area">
-        <h1 id="game-title">Contact Us</h1>
-        <div>
-            <form id="contact-form" onsubmit="return sendMail(this);">
-            <div>
-              <input type="text" class="form-control" id="form-name" name="name" placeholder="Name" required>
-              <input type="email" class="form-control" id="form-email" name="email" placeholder="Email Address" required>
-              <textarea class="form-control" id="message" rows="10" name="message" placeholder="Leave us your feedback or share any suggestion how we can further improve the game." required></textarea>
-            </div>
-            <div class="d-flex justify-content-center">
-                <input type="submit" id="btn-send-form" class="button btn-send-form my-3" value="Send">
-                <button id="btn-go-back">Go back</button>
-            </div>
-          </form>
-        </div>
+    <div id="game-area" >
+        <h1 id="game-title">Codebreaker</h1>
+        <h1 class="error-404">404</h1>
+        <h2 class="error-404"> Page not found</h2>
+        <button id="btn-go-back-404" class="d-flex justify-content-center">Go back</button>
     </div>
+    <!--Footer bar-->
     <footer>
         <div id="contact-bar">
             <div class="row">
-                <div class="col-md-4 footer-text">
+                <div class="col-md-4 col-12 footer-text">
                     <div class="contact-links d-flex justify-content-center">
                     <ul>
                         <li class="contact">
@@ -67,8 +50,8 @@
                                 <span class="sr-only">Contact us</span>
                             </a>
                         </li>
-                    </ul>
                     </div>
+                </ul>
                 </div>
                 <div class="col-md-4 footer-text">
                     <p>Created by A.Sandham</p>
@@ -79,6 +62,7 @@
             </div>
         </div>
     </footer>
-    <script src="./assets/js/contact.js"></script>
+    <!--Game Script-->
+    <script src="./assets/js/404.js"></script>
 </body>
 </html>
