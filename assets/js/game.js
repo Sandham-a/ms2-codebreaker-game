@@ -16,6 +16,8 @@ let chooseLevelScreen = document.getElementById("choose-level-screen");
 let gameScreen = document.getElementById("game-screen");
 let resetButton = document.getElementById("reset-button");
 let contactMobile = document.getElementById("contact-mobile");
+let lastGuessContainer = document.getElementById("lastGuessContainer");
+let failedAnswerContainer = document.getElementById("failedAnswerContainer");
 let colors = [];
 
 
@@ -149,17 +151,19 @@ function runGame(gameLevel){
     //Add click event listener to check button
     checkButton.addEventListener("click", checkColors);
 
-    const selected = [
-        button1.style.backgroundColor,
-        button2.style.backgroundColor,
-        button3.style.backgroundColor,
-        button4.style.backgroundColor
-    ];
     
     //Function to check if selected colors match solution
     function checkColors() {
         let correctPosition = 0;
         let correctColor = 0;
+
+        const selected = [
+            button1.style.backgroundColor,
+            button2.style.backgroundColor,
+            button3.style.backgroundColor,
+            button4.style.backgroundColor
+        ];
+        
         
         for (let i = 0; i < selected.length; i++) {
             if (selected[i] === selectedColors[i]) {
@@ -171,12 +175,17 @@ function runGame(gameLevel){
         
         if (correctPosition == 4 && guessCounter == 1) {
             resultDiv.textContent = `Well Done! You've cracked the code in ${guessCounter} guess!`;
-            guessDiv.style.display = "none"
+            guessDiv.style.display = "none";
+            remainDiv.style.display = "none";
+            checkButton.style.display = "none";
             resetButton.style.display = "block";
         } else if(correctPosition == 4){
             guessCounter++; 
             resultDiv.textContent = `Well Done! You've cracked the code in ${guessCounter} guesses!`;
-            guessDiv.style.display = "none"
+            guessDiv.style.display = "none";
+            checkButton.style.display = "none";
+            remainDiv.style.display = "none";
+            lastGuessContainer.style.display = "none";
             resetButton.style.display = "block";   
         } else if(gameLevel === "easy") {
             guessCounter++; 
@@ -199,7 +208,6 @@ function runGame(gameLevel){
         }
 
         function previousGuesses() {
-            let lastGuessContainer = document.getElementById("lastGuessContainer");
             
             // If the container doesn't exist, create it
             if (!lastGuessContainer) {
@@ -248,7 +256,6 @@ function runGame(gameLevel){
         }
 
         function gameFailed(){
-            let failedAnswerContainer = document.getElementById("failedAnswerContainer");
 
             if (!failedAnswerContainer) {
                 failedAnswerContainer = document.createElement('div');
@@ -307,7 +314,9 @@ function runGame(gameLevel){
             gameScreen.style.display = "none";
             resetButton.style.display = "none";
             lastGuessContainer.style.display = "none";
-            failedAnswerContainer.style.display = "none";
+            if(failedAnswerContainer){
+                failedAnswerContainer.style.display = "none";
+            }
             console.clear(); //clears console for the sake of housekeeping
             checkUsername(); //runs checkUsername to get back to the select level screen
         }
