@@ -208,9 +208,27 @@ body {
 
 }
 
+.contact-links ul {
+    display: flex;
+    justify-content: space-evenly; /* Distribute items evenly */
+    padding: 0;
+    list-style: none;
+    margin: 0; /* Remove default margins */
+}
+
 /* ----------------------------------------Media Query */
 
 @media (min-width: 425px){
+
+    .contact-links ul {
+        flex-direction: row; /* Keep items in a row */
+        justify-content: center; /* Adjust spacing for smaller screens */
+    }
+
+    .contact-links ul li {
+        margin: 0 5px; /* Add some margin between items if needed */
+        width: 100%;
+    }
 
     #central-icon{
         padding-left: 0;
@@ -237,8 +255,8 @@ body {
     }
     
     .contact i{
-        padding-left: 20px;
-        padding-right: 20px; 
+        padding-left: 5px;
+        padding-right: 5px; 
     }  
 
     .color-button{
