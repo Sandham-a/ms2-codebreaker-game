@@ -21,7 +21,6 @@ let failedAnswerContainer = document.getElementById("failedAnswerContainer");
 let instructionsContainer = document.getElementById("instructions");
 let colors = [];
 
-
 // Function to show an icon in the footer to access the contact page
 function mobileIcons() {
     const screenWidth = window.innerWidth;
@@ -53,23 +52,34 @@ function runMainScreen() {
 * Shows instructions when clicked
 */
 function showInstructions(){
-    instructionsContainer.style.display = "block"
-    document.getElementById("btn-close").style.display = "block";
+
+    
+
+
+
+
+
+   
+
+    if(instructionsContainer.style.display === "block" || instructionsContainer.style.display === ""){
+        instructionsContainer.style.display = "none"
+        document.getElementById("btn-close").style.display = "none";        
+    } else {
+        instructionsContainer.style.display = "block"
+        document.getElementById("btn-close").style.display = "block";
+    }
+
 }
 document.getElementById("btn-instructions").addEventListener("click", showInstructions);
 
 /**
 * closes instructions when clicked
 */
-
 function closeInstructions(){
     instructionsContainer.style.display = "none";
     document.getElementById("btn-close").style.display = "none";
 }
-
 document.getElementById("btn-close").addEventListener("click", closeInstructions);
-
-
 
 /**
  * Verification of the user name input on the log-in screen
@@ -82,6 +92,7 @@ function checkUsername() {
     if (username.length >= 1 && username.length <= 20) {
         chooseLevelScreen.style.display = "block";
         mainLoginScreen.style.display = "none";
+        instructionsContainer.style.display = "none";
         document.getElementById("username").innerText = username;
     } else {
         errorMessage.style.display = "block";
@@ -137,7 +148,6 @@ function runGame(gameLevel){
     const guessDiv = document.getElementById("guesses");
     const remainDiv = document.getElementById("remaining-guesses");
     
-
     /**
      * creating a the answer from a random array
      * @param {*} arr 
@@ -187,7 +197,6 @@ function runGame(gameLevel){
             button3.style.backgroundColor,
             button4.style.backgroundColor
         ];
-        
         
         for (let i = 0; i < selected.length; i++) {
             if (selected[i] === selectedColors[i]) {
@@ -321,9 +330,7 @@ function runGame(gameLevel){
             buttonW.style.backgroundColor = selected[0];
             buttonX.style.backgroundColor = selected[1];
             buttonY.style.backgroundColor = selected[2];
-            buttonZ.style.backgroundColor = selected[3];
-
-            
+            buttonZ.style.backgroundColor = selected[3];       
         }
        
         //function to reset the game
@@ -344,10 +351,8 @@ function runGame(gameLevel){
             console.clear(); //clears console for the sake of housekeeping
             checkUsername(); //runs checkUsername to get back to the select level screen
         }
-
         resetButton.addEventListener("click", resetGame);
     }
-    
 }
   
 // Function to change button color

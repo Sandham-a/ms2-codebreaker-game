@@ -131,6 +131,21 @@ body {
     margin-bottom: 20px;
 }
 
+#instructions{
+    text-align: center;
+    padding-top: 20px;
+    font-size: 18px;
+}
+
+#instructions h2{
+    font-size: 40px;
+}
+
+#btn-close{
+    margin-left: auto;
+    margin-right: auto;
+}
+
 
 /*-------------------------------------level select--*/
 

@@ -34,11 +34,17 @@ function sendMail(contactForm) {
   );
   return false;  // To block from loading a new page
 }
-
+const formName = document.getElementById("form-name");
+const formEmail = document.getElementById("form-email");
+const message =  document.getElementById("message");
 let backButton = document.getElementById('btn-go-back');
 
-        // Add click event listener to the home button
-        backButtonButton.addEventListener('click', function() {
-            // Navigate to index.html when the button is clicked
-            window.location.href = 'index.html';
-        });
+// Add click event listener to the home button
+backButton.addEventListener('click', () => {
+    // remove the required attribute to allow the listener to take the game back to the home page
+    formEmail.removeAttribute('required');
+    formEmail.removeAttribute('required');
+    formName.removeAttribute('required');
+    // Navigate of index.html when the button is clicked
+    window.location.href = 'index.html';
+});
