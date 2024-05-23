@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function () {
  * Setting up global variables of various ID's to be able to show and hide
  */
 let mainLoginScreen = document.getElementById("login-screen");
-let instructionsButton = document.getElementById('btn-instructions');
 let getInstructions = document.getElementById("instructions-icon");
 let errorMessage = document.getElementById("error-message");
 let chooseLevelScreen = document.getElementById("choose-level-screen");
@@ -51,26 +50,18 @@ function runMainScreen() {
 /**
 * Shows instructions when clicked
 */
-function showInstructions(){
-
-    
-
-
-
-
-
-   
-
-    if(instructionsContainer.style.display === "block" || instructionsContainer.style.display === ""){
-        instructionsContainer.style.display = "none"
-        document.getElementById("btn-close").style.display = "none";        
-    } else {
+function showInstructions(){  
+    const display = window.getComputedStyle(instructionsContainer).getPropertyValue("display");
+    if (display == "none") {
         instructionsContainer.style.display = "block"
         document.getElementById("btn-close").style.display = "block";
     }
-
+    else {
+        instructionsContainer.style.display = "none"
+        document.getElementById("btn-close").style.display = "none";
+    }
 }
-document.getElementById("btn-instructions").addEventListener("click", showInstructions);
+
 
 /**
 * closes instructions when clicked
