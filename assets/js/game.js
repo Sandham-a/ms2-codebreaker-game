@@ -18,6 +18,7 @@ let resetButton = document.getElementById("reset-button");
 let contactMobile = document.getElementById("contact-mobile");
 let lastGuessContainer = document.getElementById("lastGuessContainer");
 let failedAnswerContainer = document.getElementById("failedAnswerContainer");
+let instructionsContainer = document.getElementById("instructions");
 let colors = [];
 
 
@@ -43,9 +44,32 @@ function runMainScreen() {
     errorMessage.style.display = "none";
     mainLoginScreen.style.display = "block";
     chooseLevelScreen.style.display = "none";
+    instructionsContainer.style.display = "none";
     gameScreen.style.display = "none";
     document.getElementById("user").focus(); //focus on input element with cursor ready for username input
 }
+
+/**
+* Shows instructions when clicked
+*/
+function showInstructions(){
+    instructionsContainer.style.display = "block"
+    document.getElementById("btn-close").style.display = "block";
+}
+document.getElementById("btn-instructions").addEventListener("click", showInstructions);
+
+/**
+* closes instructions when clicked
+*/
+
+function closeInstructions(){
+    instructionsContainer.style.display = "none";
+    document.getElementById("btn-close").style.display = "none";
+}
+
+document.getElementById("btn-close").addEventListener("click", closeInstructions);
+
+
 
 /**
  * Verification of the user name input on the log-in screen
