@@ -1,12 +1,13 @@
+/* jshint esversion: 6 */
 // Function to update the text based on screen width
 let contactMobile = document.getElementById("contact-mobile");
 function mobileIcons() {
     const screenWidth = window.innerWidth;
 
     if (screenWidth > 425) {
-        contactMobile.style.display = "none"
+        contactMobile.style.display = "none";
     } else{
-        contactMobile.style.display = "block"
+        contactMobile.style.display = "block";
     }
 }
 

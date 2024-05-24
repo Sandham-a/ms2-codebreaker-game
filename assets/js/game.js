@@ -1,3 +1,4 @@
+/* jshint esversion: 6 */
 /**
  * Add an event listener to the document and run the main screen with user log-in
  */
@@ -9,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function () {
  * Setting up global variables of various ID's to be able to show and hide
  */
 let mainLoginScreen = document.getElementById("login-screen");
-let getInstructions = document.getElementById("instructions-icon");
 let errorMessage = document.getElementById("error-message");
 let chooseLevelScreen = document.getElementById("choose-level-screen");
 let gameScreen = document.getElementById("game-screen");
@@ -25,9 +25,9 @@ function mobileIcons() {
     const screenWidth = window.innerWidth;
 
     if (screenWidth > 425) {
-        contactMobile.style.display = "none"
+        contactMobile.style.display = "none";
     } else{
-        contactMobile.style.display = "block"
+        contactMobile.style.display = "block";
     }
 }
 
@@ -53,15 +53,14 @@ function runMainScreen() {
 function showInstructions(){  
     const display = window.getComputedStyle(instructionsContainer).getPropertyValue("display");
     if (display == "none") {
-        instructionsContainer.style.display = "block"
+        instructionsContainer.style.display = "block";
         document.getElementById("btn-close").style.display = "block";
     }
     else {
-        instructionsContainer.style.display = "none"
+        instructionsContainer.style.display = "none";
         document.getElementById("btn-close").style.display = "none";
     }
 }
-
 
 /**
 * closes instructions when clicked
@@ -103,7 +102,6 @@ document.getElementById("user").addEventListener("keydown", function (event) {
 });
 
 function selectGameLevel() {
-    score = 0;
     document.getElementById('level-buttons').addEventListener('click', function (event) {
         if (!event.target.className.includes("button-level")) return; // prevent click over all div with three buttons
         let button = event.target;
@@ -154,7 +152,6 @@ function runGame(gameLevel){
             const randomElement = arr[randomIndex];
             randomElements.push(randomElement);
         }
-    
         return randomElements;
     }
     const selectedColors = getRandomElementsFromArray(colors, 4);
@@ -228,7 +225,7 @@ function runGame(gameLevel){
         }
 
         if(guessesLeft == 0){
-            gameFailed()
+            gameFailed();
         }
 
         function previousGuesses() {
@@ -290,7 +287,7 @@ function runGame(gameLevel){
             lastGuessContainer.style.display = "none";
             checkButton.style.display = "none";
             resultDiv.textContent = `I'm afraid you haven't cracked the code in time. The world is doomed!!!`;
-            guessDiv.style.display = "none"
+            guessDiv.style.display = "none";
             resetButton.style.display = "block";
 
             let failedAnswer = document.createElement('div');
