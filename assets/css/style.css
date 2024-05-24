@@ -69,6 +69,8 @@ body {
 
 .footer-text{
     padding-top: 10px;
+    text-align: center;
+    vertical-align: middle;
 }
 
 #contact-bar ul{

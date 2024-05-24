@@ -28,9 +28,10 @@
         <div>
             <form id="contact-form" onsubmit="return sendMail(this);">
             <div>
-              <input type="text" class="form-control" id="form-name" name="name" placeholder="Name" required>
-              <input type="email" class="form-control" id="form-email" name="email" placeholder="Email Address" required>
-              <textarea class="form-control" id="message" rows="10" name="message" placeholder="Leave us your feedback or share any suggestion how we can further improve the game." required></textarea>
+              <input type="text" class="form-control" id="form-name" name="name" placeholder="Name" aria-label="User Name" required>
+              <input type="email" class="form-control" id="form-email" name="email" placeholder="Email Address" aria-label="User Email" required>
+              <textarea class="form-control" id="message" rows="10" name="message" placeholder="Leave us your feedback or share any suggestion how we can further improve the game." 
+              aria-label="User's Message" required></textarea>
             </div>
             <div class="d-flex justify-content-center">
                 <input type="submit" id="btn-send-form" class="button btn-send-form my-3" value="Send">
@@ -73,10 +74,10 @@
                     </div>
                 </div>
                 <div class="col-md-4 footer-text">
-                    <p>Created by A.Sandham</p>
+                    <h5>Created by A.Sandham</h5>
                 </div>
                 <div class="col-md-4 footer-text">
-                    <a href="contact.html"><p>Contact Us</p></a>
+                    <a href="contact.html"><h5>Contact Us</h5></a>
                 </div>
             </div>
         </div>
