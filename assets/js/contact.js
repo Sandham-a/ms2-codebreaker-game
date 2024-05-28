@@ -27,13 +27,17 @@ function sendMail(contactForm) {
   })
   .then(
       function(response) {
-          console.log("SUCCESS", response);
+            console.log("SUCCESS", response);
+            alert("Thank you for your email your suggestion will be considered");
+            location.reload();
       },
       function(error) {
           console.log("FAILED", error);
+          alert("I'm sorry theres been an error please try again")
+          // To block from loading a new page
+          return false; 
       }
   );
-  return false;  // To block from loading a new page
 }
 const formName = document.getElementById("form-name");
 const formEmail = document.getElementById("form-email");

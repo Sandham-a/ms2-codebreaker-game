@@ -315,10 +315,10 @@ function runGame(gameLevel){
             let buttonZ = document.getElementById("button-z");
 
             // Set the background color of each button
-            buttonW.style.backgroundColor = selected[0];
-            buttonX.style.backgroundColor = selected[1];
-            buttonY.style.backgroundColor = selected[2];
-            buttonZ.style.backgroundColor = selected[3];       
+            buttonW.style.backgroundColor = selectedColors[0];
+            buttonX.style.backgroundColor = selectedColors[1];
+            buttonY.style.backgroundColor = selectedColors[2];
+            buttonZ.style.backgroundColor = selectedColors[3];       
         }
        
         //function to reset the game
