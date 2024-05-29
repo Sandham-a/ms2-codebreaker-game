@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 /**
- * Setting up global variables of various ID's to be able to show and hide
+ * Setting up global variables of various ID's to be able to show and hide game elements
  */
 let mainLoginScreen = document.getElementById("login-screen");
 let errorMessage = document.getElementById("error-message");
@@ -78,7 +78,7 @@ document.getElementById("user-log").addEventListener("click", checkUsername);
 
 function checkUsername() {
     let username = document.getElementById("user").value.trim();
-
+// If username is successful add close name entry screen and proceed to the difficulty level
     if (username.length >= 1 && username.length <= 20) {
         chooseLevelScreen.style.display = "block";
         mainLoginScreen.style.display = "none";
@@ -138,10 +138,7 @@ function runGame(gameLevel){
     const remainDiv = document.getElementById("remaining-guesses");
     
     /**
-     * creating a the answer from a random array
-     * @param {*} arr 
-     * @param {*} numElements 
-     * @returns 
+     * creating randomly picking the answer for the colors in an array
      */
     
     function getRandomElementsFromArray(arr, numElements) {
@@ -157,7 +154,7 @@ function runGame(gameLevel){
     const selectedColors = getRandomElementsFromArray(colors, 4);
     console.log(selectedColors); //answer shown in console for ease of marking and testing. THIS IS INTENTIONAL
     
-    //Initialize buttons with initial colors
+    //Initialize buttons with initial colors easy allows for alternate colors 
     if(gameLevel === "easy"){
         button1.style.backgroundColor = colors[0];
         button2.style.backgroundColor = colors[1];
@@ -198,6 +195,7 @@ function runGame(gameLevel){
             resultDiv.textContent = `Well Done! You've cracked the code in ${guessCounter} guess!`;
             guessDiv.style.display = "none";
             remainDiv.style.display = "none";
+            lastGuessContainer.style.display = "none";
             checkButton.style.display = "none";
             resetButton.style.display = "block";
         } else if(correctPosition == 4){
