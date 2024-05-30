@@ -28,16 +28,15 @@ function sendMail(contactForm) {
   .then(
       function(response) {
             console.log("SUCCESS", response);
-            alert("Thank you for your email your suggestion will be considered");
+            alert("Thank you for your email. Your suggestion will be considered.");
             location.reload();
       },
       function(error) {
           console.log("FAILED", error);
-          alert("I'm sorry theres been an error please try again")
-          // To block from loading a new page
-          return false; 
+          alert("I'm sorry there seems to have been an issue with sending this message please try again")
       }
   );
+  return false;  // To block from loading a new page
 }
 const formName = document.getElementById("form-name");
 const formEmail = document.getElementById("form-email");
