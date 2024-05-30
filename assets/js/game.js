@@ -174,7 +174,7 @@ function runGame(gameLevel){
     function checkColors() {
         let correctPosition = 0;
         let correctColor = 0;
-        // array that holds the color of the buttons when checked
+        // array that holds the color of the buttons when checked.
         const selected = [
             button1.style.backgroundColor,
             button2.style.backgroundColor,
@@ -191,7 +191,7 @@ function runGame(gameLevel){
             }
         }
         //the if statement that deals with the result of check. By showing and hiding selected Div's to proceed the games. 
-        //This is if the player has guessed correctly and done it in one guess
+        //This is if the player has guessed correctly and done it in one guess.
         if (correctPosition == 4 && guessCounter == 1) {
             resultDiv.textContent = `Well Done! You've cracked the code in ${guessCounter} guess!`;
             guessDiv.style.display = "none";
@@ -199,7 +199,7 @@ function runGame(gameLevel){
             lastGuessContainer.style.display = "none";
             checkButton.style.display = "none";
             resetButton.style.display = "block";
-        // This is if the player has guessed correctly in multiple guesses
+        // This is if the player has guessed correctly in multiple guesses.
         } else if(correctPosition == 4){
             guessCounter++; 
             resultDiv.textContent = `Well Done! You've cracked the code in ${guessCounter} guesses!`;
@@ -209,7 +209,7 @@ function runGame(gameLevel){
             lastGuessContainer.style.display = "none";
             resetButton.style.display = "block";
         // This is if the player has guessed incorrectly on easy difficulty it will show how many are in the correct place but not color being there
-        // only 2 colors in this game mode it will also increment and decrement the guess counter and how many guesses are left
+        // only 2 colors in this game mode it will also increment and decrement the guess counter and how many guesses are left.
         } else if(gameLevel === "easy") {
             guessCounter++; 
             guessesLeft --;
@@ -217,7 +217,7 @@ function runGame(gameLevel){
             resultDiv.textContent = `Correct position: ${correctPosition}`;
             remainDiv.textContent = `Number of guesses remaining: ${guessesLeft}`;
             previousGuesses();
-        // This is if the player has guessed incorrectly and on the other difficulties and will state if the color is at least correct while altering the counters 
+        // This is if the player has guessed incorrectly and on the other difficulties and will state if the color is at least correct while altering the counters. 
         } else {
             guessCounter++;
             guessesLeft --;
@@ -241,7 +241,7 @@ function runGame(gameLevel){
                 lastGuessContainer.id = "lastGuessContainer";
                 gameScreen.appendChild(lastGuessContainer);
             }
-        
+            // creates the HTML to show the buttons at the specific part of the webpage.
             let lastGuess = document.createElement('div');
             lastGuess.classList.add('buttons');
             let html = `
@@ -254,10 +254,10 @@ function runGame(gameLevel){
             
             lastGuess.innerHTML = html;
         
-            // Clear the previous content before appending the new content
+            // Clear the previous content before appending the new content otherwise it will keep adding arrays of empty buttons.
             lastGuessContainer.innerHTML = "";
         
-            // Append the new content
+            // Append the new content.
             lastGuessContainer.appendChild(lastGuess);
             lastGuessContainer.style.display = "Block";
         
@@ -266,7 +266,7 @@ function runGame(gameLevel){
             let buttonC = document.getElementById("button-c");
             let buttonD = document.getElementById("button-d");
         
-            // Store the colors of the buttons in an object
+            // Store the colors of the buttons in an object.
             let lastGuessColors = {
                 buttonAColor: button1.style.backgroundColor,
                 buttonBColor: button2.style.backgroundColor,
@@ -274,7 +274,7 @@ function runGame(gameLevel){
                 buttonDColor: button4.style.backgroundColor
             };
         
-            // Set the background color of each button
+            // Set the background color of each button.
             buttonA.style.backgroundColor = lastGuessColors.buttonAColor;
             buttonB.style.backgroundColor = lastGuessColors.buttonBColor;
             buttonC.style.backgroundColor = lastGuessColors.buttonCColor;
@@ -282,19 +282,20 @@ function runGame(gameLevel){
         }
 
         function gameFailed(){
-
+            // If the container doesn't exist, create it.
             if (!failedAnswerContainer) {
                 failedAnswerContainer = document.createElement('div');
                 failedAnswerContainer.id = "failedAnswerContainer";
                 gameScreen.appendChild(failedAnswerContainer);
             }
-
+            // Alter the screen to the failed game screen
             lastGuessContainer.style.display = "none";
             checkButton.style.display = "none";
             resultDiv.textContent = `I'm afraid you haven't cracked the code in time. The world is doomed!!!`;
             guessDiv.style.display = "none";
             resetButton.style.display = "block";
-
+           
+            // creates the button to display the solution
             let failedAnswer = document.createElement('div');
             failedAnswer.classList.add('buttons');
             let html = `
@@ -307,10 +308,10 @@ function runGame(gameLevel){
 
             failedAnswer.innerHTML = html;
         
-            // Clear the previous content before appending the new content
+            // Clear the previous content before appending the new content.
             failedAnswerContainer.innerHTML = "";
         
-            // Append the new content
+            // Append the new content.
             failedAnswerContainer.appendChild(failedAnswer);
             failedAnswerContainer.style.display = "Block";
         
@@ -319,22 +320,28 @@ function runGame(gameLevel){
             let buttonY = document.getElementById("button-y");
             let buttonZ = document.getElementById("button-z");
 
-            // Set the background color of each button
+            // Set the background color of each button to the colors in the answer (selectedColors) array.
             buttonW.style.backgroundColor = selectedColors[0];
             buttonX.style.backgroundColor = selectedColors[1];
             buttonY.style.backgroundColor = selectedColors[2];
             buttonZ.style.backgroundColor = selectedColors[3];       
         }
        
-        //function to reset the game
+        /**
+         * Function to restart the game
+         */
         function resetGame(){
+            //resets hidden elements to block when they need to be shown otherwise they will remain hidden when reloaded
             guessDiv.style.display = "block";
             checkButton.style.display = "block";
+            //clears the information that was stored in the divs. 
             resultDiv.textContent = "";
             guessDiv.textContent = "";
             remainDiv.textContent ="";
+            //resets the counters
             guessCounter = 0;
             guessesLeft = 10;
+            //hides the other elements of the game to restart.
             gameScreen.style.display = "none";
             resetButton.style.display = "none";
             lastGuessContainer.style.display = "none";
@@ -348,7 +355,10 @@ function runGame(gameLevel){
     }
 }
   
-// Function to change button color
+/**
+ * Function to cycle through the color array of the buttons once clicked
+ * @param {*} button 
+ */
 function changeColor(button) {    
     let currentColorIndex = colors.indexOf(button.style.backgroundColor);
     let nextColorIndex = (currentColorIndex + 1) % colors.length;
