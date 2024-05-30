@@ -1,6 +1,6 @@
 /* jshint esversion: 6 */
 /**
- * Add an event listener to the document and run the main screen with user log-in
+ * Add an event listener to the document and run the main screen with user log-in once the DOM is loaded
  */
 document.addEventListener('DOMContentLoaded', function () {
     runMainScreen();
@@ -20,7 +20,7 @@ let failedAnswerContainer = document.getElementById("failedAnswerContainer");
 let instructionsContainer = document.getElementById("instructions");
 let colors = [];
 
-// Function to show an icon in the footer to access the contact page
+// Function to show an additional icon in the footer to access the contact page when on a small screen
 function mobileIcons() {
     const screenWidth = window.innerWidth;
 
@@ -48,7 +48,7 @@ function runMainScreen() {
 }
 
 /**
-* Shows instructions when clicked
+* Shows instructions when clicked and if it is already open close the instruction container again.
 */
 function showInstructions(){  
     const display = window.getComputedStyle(instructionsContainer).getPropertyValue("display");
@@ -63,7 +63,7 @@ function showInstructions(){
 }
 
 /**
-* closes instructions when clicked
+* closes instructions when close button is clicked.
 */
 function closeInstructions(){
     instructionsContainer.style.display = "none";
@@ -72,13 +72,13 @@ function closeInstructions(){
 document.getElementById("btn-close").addEventListener("click", closeInstructions);
 
 /**
- * Verification of the user name input on the log-in screen
+ * Verification of the user name input on the log-in screen.
  */
 document.getElementById("user-log").addEventListener("click", checkUsername);
 
 function checkUsername() {
     let username = document.getElementById("user").value.trim();
-// If username is successful add close name entry screen and proceed to the difficulty level
+// If username is successful add close name entry screen and proceed to the difficulty level.
     if (username.length >= 1 && username.length <= 20) {
         chooseLevelScreen.style.display = "block";
         mainLoginScreen.style.display = "none";
@@ -93,7 +93,7 @@ function checkUsername() {
 checkUsername();
 
 /**
- * Input of username using by pressing enter key
+ * Input of username using by pressing enter key.
  */
 document.getElementById("user").addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
@@ -103,7 +103,7 @@ document.getElementById("user").addEventListener("keydown", function (event) {
 
 function selectGameLevel() {
     document.getElementById('level-buttons').addEventListener('click', function (event) {
-        if (!event.target.className.includes("button-level")) return; // prevent click over all div with three buttons
+        if (!event.target.className.includes("button-level")) return; // prevent click over all div with three buttons.
         let button = event.target;
         let gameLevel = button.getAttribute('data-type');
         runGame(gameLevel);
@@ -112,12 +112,12 @@ function selectGameLevel() {
 selectGameLevel();
 
 function runGame(gameLevel){
-    //change the display to the game screen
+    //change the display to the game screen and hides the level select screen and reset button for future games.
     chooseLevelScreen.style.display = "none";
-    gameScreen.style.display = "block";
     resetButton.style.display = "none";
+    gameScreen.style.display = "block";
 
-    //set the size of the array depending on the level of the game
+    //set the array depending on the level of the game that was selected.
     if(gameLevel === "easy"){
         colors = ["grey","white"];
     }else if (gameLevel === "medium"){
@@ -126,21 +126,21 @@ function runGame(gameLevel){
         colors = ["red", "green", "blue", "yellow", "white", "grey"];
     }
 
+    //Variables that target various IDs to be able to manipulate them.
     let button1 = document.getElementById("button1");
     let button2 = document.getElementById("button2");
     let button3 = document.getElementById("button3");
     let button4 = document.getElementById("button4");
-    let guessCounter = 0;
-    let guessesLeft = 10;
     let checkButton = document.getElementById("check-button");
     const resultDiv = document.getElementById("result");
     const guessDiv = document.getElementById("guesses");
-    const remainDiv = document.getElementById("remaining-guesses");
-    
+    const remainDiv = document.getElementById("remaining-guesses");    
+    let guessCounter = 0; //number of guesses that have occurred
+    let guessesLeft = 10; // number of guesses that are left before game failed function called.
+
     /**
-     * creating randomly picking the answer for the colors in an array
+     * creating a function that randomly selects an element from the array that was set up from the difficulty screen.
      */
-    
     function getRandomElementsFromArray(arr, numElements) {
         let randomElements = [];
         
@@ -151,10 +151,11 @@ function runGame(gameLevel){
         }
         return randomElements;
     }
+    //creates the answer for the game by selecting 4 colors from the required array.
     const selectedColors = getRandomElementsFromArray(colors, 4);
-    console.log(selectedColors); //answer shown in console for ease of marking and testing. THIS IS INTENTIONAL
+    console.log(selectedColors); //answer shown in console for ease of marking and testing. THIS IS INTENTIONAL.
     
-    //Initialize buttons with initial colors easy allows for alternate colors 
+    //Initialize buttons with initial colors easy allows for alternate colors as there are only 2 colors to select from.
     if(gameLevel === "easy"){
         button1.style.backgroundColor = colors[0];
         button2.style.backgroundColor = colors[1];
@@ -166,16 +167,14 @@ function runGame(gameLevel){
         button3.style.backgroundColor = colors[2];
         button4.style.backgroundColor = colors[3];
     }
-
-    //Add click event listener to check button
+    //Add click event listener to check button.
     checkButton.addEventListener("click", checkColors);
-
     
-    //Function to check if selected colors match solution
+    //Function to check if selected colors match solution.
     function checkColors() {
         let correctPosition = 0;
         let correctColor = 0;
-
+        // array that holds the color of the buttons when checked
         const selected = [
             button1.style.backgroundColor,
             button2.style.backgroundColor,
@@ -183,6 +182,7 @@ function runGame(gameLevel){
             button4.style.backgroundColor
         ];
         
+        //Loop that goes through the selected array and compares it to the selectedColors array to see if it is correct.
         for (let i = 0; i < selected.length; i++) {
             if (selected[i] === selectedColors[i]) {
                 correctPosition++;
@@ -190,7 +190,8 @@ function runGame(gameLevel){
                 correctColor++;
             }
         }
-        
+        //the if statement that deals with the result of check. By showing and hiding selected Div's to proceed the games. 
+        //This is if the player has guessed correctly and done it in one guess
         if (correctPosition == 4 && guessCounter == 1) {
             resultDiv.textContent = `Well Done! You've cracked the code in ${guessCounter} guess!`;
             guessDiv.style.display = "none";
@@ -198,6 +199,7 @@ function runGame(gameLevel){
             lastGuessContainer.style.display = "none";
             checkButton.style.display = "none";
             resetButton.style.display = "block";
+        // This is if the player has guessed correctly in multiple guesses
         } else if(correctPosition == 4){
             guessCounter++; 
             resultDiv.textContent = `Well Done! You've cracked the code in ${guessCounter} guesses!`;
@@ -205,7 +207,9 @@ function runGame(gameLevel){
             checkButton.style.display = "none";
             remainDiv.style.display = "none";
             lastGuessContainer.style.display = "none";
-            resetButton.style.display = "block";   
+            resetButton.style.display = "block";
+        // This is if the player has guessed incorrectly on easy difficulty it will show how many are in the correct place but not color being there
+        // only 2 colors in this game mode it will also increment and decrement the guess counter and how many guesses are left
         } else if(gameLevel === "easy") {
             guessCounter++; 
             guessesLeft --;
@@ -213,6 +217,7 @@ function runGame(gameLevel){
             resultDiv.textContent = `Correct position: ${correctPosition}`;
             remainDiv.textContent = `Number of guesses remaining: ${guessesLeft}`;
             previousGuesses();
+        // This is if the player has guessed incorrectly and on the other difficulties and will state if the color is at least correct while altering the counters 
         } else {
             guessCounter++;
             guessesLeft --;
@@ -225,7 +230,9 @@ function runGame(gameLevel){
         if(guessesLeft == 0){
             gameFailed();
         }
-
+        /**
+         * Function that takes the previous guess and adds it to the bottom of the website.
+         */
         function previousGuesses() {
             
             // If the container doesn't exist, create it
