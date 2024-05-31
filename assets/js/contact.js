@@ -15,10 +15,8 @@ function mobileIcons() {
 mobileIcons();
 window.addEventListener("resize", mobileIcons);
 
-/**
- * Function to that creates the variable of emailObj variable.
- * then sends the object to the email JS process the API request.
- */
+ // Function to that creates the variable of emailObj variable.
+ //then sends the object to the email JS process the API request.
 function sendMail(contactForm) {
   emailjs.send("service_0fp6dju", "template_k9hm21e", {
       "from_name": contactForm.name.value,
